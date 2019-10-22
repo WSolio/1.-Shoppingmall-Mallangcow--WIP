@@ -1,0 +1,72 @@
+	<style type="text/css">
+		
+		* {
+			font-family: 'Black Han Sans', sans-serif;
+
+		}
+		
+		input[type=text], select {  border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+		input[type = number], select {  border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+		img { display: block; margin: 0px auto; }
+
+		h2 {display:inline;}
+		.asdf{
+			display:inline;
+			margin-left:50px;
+		}
+		.qwer{
+			margin-top:20px;
+		}
+		.wrap {
+			width: 600px;
+			margin: auto;
+		}
+		.bold{
+			font-weight: 700;
+		}
+		.aaa {line-height: 300%;
+		}
+		.mrg {
+			margin: 0 auto;
+			width: 300;
+			height: 50;
+			background-color: white;
+		}
+		.btn{
+			margin: 0 auto;
+			width: 300;
+			height: 50;
+		}
+		.a1{
+			margin-right: 17px;
+			display:inline;
+		}
+
+
+		.a3{
+			margin-right: 63px;
+			display:inline;
+		}
+
+		.a4{
+			margin-right: 31px;
+			display:inline;
+		}
+		.info {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		.user-info {
+			margin: 20px 5px auto 5px;
+		}
+		h1, h5 {
+			display: inline;
+		}
+		.order {
+			text-align: center;
+		}
+		.orders {
+			margin-top: 100px;
+		}
+	</style>

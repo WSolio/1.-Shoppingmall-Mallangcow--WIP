@@ -1,0 +1,206 @@
+<html>
+<head>
+	<title>상품 주문 페이지</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- JS -->		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- font -->	
+
+	
+	<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="mall.css">
+
+
+	<script type="text/javascript">
+
+		function order() {
+			let name = $('#order_name').val();
+			let count = $('#order_count').val();
+			let address = $('#order_address').val();
+			let phone = $('#order_phone').val();
+			let item = '말랑카우';
+
+
+			$.ajax({
+				type: "POST",
+				url: "http://spartacodingclub.shop/order",
+				data: { name_give:name, count_give:count, address_give:address, phone_give:phone, item_give:item },
+				success: function(response){
+					if(response['result'] == 'success'){
+						alert('흑우 포착!');
+						window.location.reload();
+					}
+				}
+			})
+		}
+
+
+		$(document).ready(function(){
+			$('#orders-box').html('');
+			listing();
+		});
+
+
+
+		function listing() {
+			$.ajax({
+				type: "GET",
+				url: "http://spartacodingclub.shop/order?item_give=말랑카우",
+				data: {},
+				success: function(response){
+					if (response['result'] == 'success') {
+						let orders = response['orders'];
+						for (let i = 0; i < orders.length; i++) {
+							make_card(orders[i]['item'],orders[i]['name'],orders[i]['count'],orders[i]['address'],orders[i]['phone'])
+						}
+					} else {
+						alert('잘못된 동작입니다.');
+					}
+				}
+			})
+		}
+
+		function make_card(item,name,count,address,phone) {
+			let temp_html = '<tr>\
+			<td>'+item+'</td>\
+			<td>'+name+'</td>\
+			<td>'+count+'</td>\
+			<td>'+address+'</td>\
+			<td>'+phone+'</td>\
+			</tr>';
+			$('#orders-box').append(temp_html);
+		}
+	</script>
+
+
+
+
+
+
+	<script type="text/javascript">
+		function hey(){
+			alert('당신은 말랑카우')
+		} 
+	</script>
+
+</head>
+
+<body>
+	<img src="Black tender yak 02.png" alt="이미지 안뜨는 말랑카우들 없제" width="600" height="350" margin=auto>
+
+	<br></br>
+
+	<div class="wrap">
+		<h2 class="bold">그것</h2><div class='asdf'>가격:싯가</div>
+
+		<div class = "qwer">이 상품으로 말할 것 같으면 용왕이 토끼에게 속은 것 처럼 속는 <b>말랑카우</b>없제~</div>
+
+		<br></br>
+		
+		<div class="aaa">
+			<h2 class="bold">주문정보</h2>
+		</div>
+		
+		<div class="info">
+			<!-- 이름 -->
+			<p>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">주문자 이름</span>
+					</div>
+					<input type="text" class="form-control" id="order_name" aria-describedby="basic-addon3">
+				</div>
+			</p>
+
+
+
+			<!-- 수량 -->
+			<p>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">수량</label>
+					</div>
+					<select class="custom-select" id="order_count">
+						<option selected=""> -- 수량을 선택하세요 -- </option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4톤</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+			</p>
+
+			<!-- 주소 입력 -->
+			<p>
+
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">주소</span>
+					</div>
+					<input type="text" class="form-control" id="order_address" aria-describedby="basic-addon3">
+				</div>
+
+
+			</p>
+
+
+			<!-- 전화번호 입력 -->
+			<p>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">전화번호</span>
+					</div>
+					<input type="text" class="form-control" id="order_phone" aria-describedby="basic-addon3">
+				</div>
+
+			</p>
+
+
+
+		</div>
+
+		<br></br>
+
+		<div style="text-align:center;">
+			<button onclick="order()" class="btn" type="button">상품 주문</button>
+		</div>
+
+		<br></br>	
+
+		<div class="orders">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">상품명</th>
+						<th scope="col">이름</th>
+						<th scope="col">수량</th>
+						<th scope="col">주소</th>
+						<th scope="col">전화번호</th>
+					</tr>
+				</thead>
+				<tbody id="orders-box"></tbody>
+			</table>
+		</div>
+
+	</div>  
+
+</div>
+
+</body>
+</html>
